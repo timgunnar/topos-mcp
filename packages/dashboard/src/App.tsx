@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import type { ToposData } from "./api";
-import { fetchProject } from "./api";
+import { fetchProject, connectWebSocket } from "./api";
 import Topology from "./components/Topology";
 import Inspector from "./components/Inspector";
 import Timeline from "./components/Timeline";
@@ -13,6 +13,15 @@ export default function App() {
 
   useEffect(() => {
     fetchProject().then(setData);
+  }, []);
+
+  useEffect(() => {
+    const ws = connectWebSocket((event) => {
+      if (event === "feature_updated") {
+        fetchProject().then(setData);
+      }
+    });
+    return () => ws.close();
   }, []);
 
   if (!data) {
