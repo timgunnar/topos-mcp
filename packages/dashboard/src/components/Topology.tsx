@@ -44,7 +44,9 @@ function NodeSphere({
     if (!meshRef.current) return;
     if (feature.status === "in_progress") {
       const pulse = 1 + Math.sin(clock.elapsedTime * 3) * 0.15;
-      meshRef.current.scale.setScalar(scale * pulse);
+      meshRef.current.scale.setScalar(pulse);
+    } else {
+      meshRef.current.scale.setScalar(1);
     }
     if (bugAlert) {
       const mat = meshRef.current.material as THREE.MeshStandardMaterial;
@@ -203,10 +205,11 @@ function Scene({
         const y = totalHeight / 2 - li * LAYER_GAP;
         return layer.modules.map((mod, mi) => {
           const x = ((layer.modules.length - 1) * MODULE_GAP) / 2 - mi * MODULE_GAP;
+          const z = Math.sin(mi * 1.5) * 1.5;
           return (
             <Text
               key={`${layer.name}-${mod.name}`}
-              position={[x, y + 1.2, 0]}
+              position={[x, y + 1.2, z]}
               fontSize={0.3}
               color="#9ca3af"
               anchorX="center"
