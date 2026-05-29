@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/timgunnar/topos-mcp"
+    "url": "git+https://github.com/timgunnar/topos-mcp.git"
   },
   "type": "module",
   "main": "./dist/index.js",
