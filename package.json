@@ -1,6 +1,10 @@
 {
   "name": "topos",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timgunnar/topos-mcp"
+  },
   "workspaces": [
     "packages/*"
   ],

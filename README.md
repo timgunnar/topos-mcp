@@ -14,8 +14,8 @@ npx @topos/mcp serve   # 启动 MCP server + Dashboard
 ### 从源码安装（GitHub）
 
 ```bash
-git clone https://github.com/topos/topos.git
-cd topos
+git clone https://github.com/timgunnar/topos-mcp.git
+cd topos-mcp
 npm install
 npm run build
 node packages/mcp-server/dist/index.js init    # 在当前项目初始化
