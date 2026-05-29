@@ -21,8 +21,8 @@ MCP 工具持续更新，人通过 3D Dashboard 一眼看清项目全貌。
 ### npm（推荐）
 
 ```bash
-npx @topos/mcp init    # 在当前项目初始化
-npx @topos/mcp serve   # 启动 MCP server + Dashboard
+npx @timgunnar/topos-mcp init    # 在当前项目初始化
+npx @timgunnar/topos-mcp serve   # 启动 MCP server + Dashboard
 ```
 
 ### 从源码安装（GitHub）
@@ -46,7 +46,7 @@ node packages/mcp-server/dist/index.js serve   # 启动 MCP server + Dashboard
     "topos": {
       "command": "npx",
       "args": [
-        "@topos/mcp",
+        "@timgunnar/topos-mcp",
         "serve"
       ]
     }

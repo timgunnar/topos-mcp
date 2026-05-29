@@ -4,7 +4,7 @@
 
 ### 关键升级
 
-- MCP Server (`@topos/mcp`) 发布，包含 7 个工具用于功能点 CRUD 和计划查询
+- MCP Server (`@timgunnar/topos-mcp`) 发布，包含 7 个工具用于功能点 CRUD 和计划查询
 - 三层数据模型（分层 → 模块 → 功能点），YAML 持久化（`.devion/project.yaml`）
 - `agent-context.md` 自动生成，供 Agent 启动时读取项目状态摘要
 - CLI 三个命令：`init`（初始化）、`serve`（启动 MCP + Dashboard）、`skill`（注入 Agent 工作习惯到 CLAUDE.md）

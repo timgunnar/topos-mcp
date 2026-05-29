@@ -1,5 +1,5 @@
 {
-  "name": "@topos/mcp",
+  "name": "@timgunnar/topos-mcp",
   "version": "0.1.0",
   "description": "AI Agent 驱动开发的项目智能追踪 MCP 工具 — 3D 拓扑 Dashboard 可视化项目状态",
   "license": "MIT",

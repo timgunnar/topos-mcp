@@ -52,7 +52,7 @@ async function runInit(): Promise<void> {
   console.log("  agent-context.md — agent-readable summary");
   console.log("");
   console.log('Add to Claude Code config:');
-  console.log('  { "mcpServers": { "topos": { "command": "npx", "args": ["@topos/mcp", "serve"] } } }');
+  console.log('  { "mcpServers": { "topos": { "command": "npx", "args": ["@timgunnar/topos-mcp", "serve"] } } }');
 }
 
 async function runSkill(): Promise<void> {
