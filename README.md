@@ -4,9 +4,22 @@
 
 ## 安装
 
+### npm（推荐）
+
 ```bash
 npx @topos/mcp init    # 在当前项目初始化
 npx @topos/mcp serve   # 启动 MCP server + Dashboard
+```
+
+### 从源码安装（GitHub）
+
+```bash
+git clone https://github.com/topos/topos.git
+cd topos
+npm install
+npm run build
+node packages/mcp-server/dist/index.js init    # 在当前项目初始化
+node packages/mcp-server/dist/index.js serve   # 启动 MCP server + Dashboard
 ```
 
 打开 `http://localhost:4321` 查看 3D 拓扑图。
