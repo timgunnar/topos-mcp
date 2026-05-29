@@ -8,7 +8,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { tools } from "./tools.js";
 import { handleToolCall, setCwd } from "./mcp.js";
-import { ensureDevionDir, readProject } from "./data.js";
+import { ensureDevionDir, readProject, writeProject } from "./data.js";
 import { writeContext } from "./context.js";
 import { startServer } from "./server.js";
 
@@ -45,6 +45,7 @@ async function runInit(): Promise<void> {
   setCwd(cwd);
   ensureDevionDir(cwd);
   const data = readProject(cwd);
+  writeProject(cwd, data);
   writeContext(cwd, data);
   console.log(`Topos initialized in ${cwd}/.devion/`);
   console.log("  project.yaml — project data");
