@@ -2,23 +2,28 @@
 
 ## [0.1.0] — 2026-05-29
 
-### Added
+### 关键升级
 
-- MCP Server (`@topos/mcp`) with 7 tools: `topos_add_feature`, `topos_mark_progress`, `topos_mark_done`, `topos_mark_deprecated`, `topos_get_status`, `topos_get_plan`, `topos_list_features`
-- YAML-based project data persistence (`.devion/project.yaml`) with three-level hierarchy: Layer → Module → Feature
-- Auto-generated `agent-context.md` summary for agent context window
-- HTTP API server (port 4321) with REST endpoints and WebSocket real-time push
-- CLI commands: `init` (initialize project), `serve` (start MCP + Dashboard), `skill` (inject agent habits into CLAUDE.md)
-- 3D topology Dashboard with Three.js (React Three Fiber)
-  - Layer planes, module node spheres, dependency beams
-  - Color-coded feature status (green/blue/gray/dim)
-  - Pulse animation for in-progress and bug-fix features
-  - OrbitControls: drag to rotate, scroll to zoom, right-drag to pan
-- Feature Inspector panel with status/priority badges, progress bar, history timeline, manual correction controls
-- Timeline slider for scrubbing through project history
-- WebSocket real-time updates when features are modified
-- Topos Skill file for optional CLAUDE.md injection
-- Feature source types: feature_request, bug_fix, refactor, optimization
-- Feature statuses: active, in_progress, implemented, deprecated
-- Feature dependencies with visual dependency beams
-- Agent plan tracking (current / next / recently_deprecated)
+- MCP Server (`@topos/mcp`) 发布，包含 7 个工具用于功能点 CRUD 和计划查询
+- 三层数据模型（分层 → 模块 → 功能点），YAML 持久化（`.devion/project.yaml`）
+- `agent-context.md` 自动生成，供 Agent 启动时读取项目状态摘要
+- CLI 三个命令：`init`（初始化）、`serve`（启动 MCP + Dashboard）、`skill`（注入 Agent 工作习惯到 CLAUDE.md）
+- 3D 拓扑仪表盘（Three.js + React Three Fiber），支持 OrbitControls 交互
+  - 分层平面、模块节点球、依赖光束、状态颜色编码
+  - 进行中和 BUG 修复节点的脉冲动画
+- 功能点详情面板（Inspector）：状态/来源类型/优先级徽章、进度条、演化历史时间线、手动修正控件
+- 时间轴滑块（Timeline）：拖动回溯项目历史
+- WebSocket 实时推送，功能点变更时 Dashboard 自动刷新
+- 功能点四种来源类型（功能需求 / 缺陷修复 / 重构优化 / 性能优化）和四种状态（已规划 / 实现中 / 已实现 / 已作废）
+- Agent 计划追踪（当前任务 / 下一步 / 最近作废）
+
+### 关键 BUG 修复
+
+- 修复 `init` 命令未将 `project.yaml` 写入磁盘的问题（`readProject` 仅创建内存对象）
+- 修复 `index.ts` 中 `readProject` 从错误模块导入的问题（`./context.js` → `./data.js`）
+- 修复 3D 拓扑场景中脉冲动画缩放双重乘法（`setScalar(scale * pulse)` → `setScalar(pulse)`）
+- 修复模块标签 Z 坐标硬编码为 0，改为跟随模块的 Z 偏移量
+
+### 测试
+
+- 尚未添加自动化测试
