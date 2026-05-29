@@ -1,4 +1,4 @@
-# Topos
+# Topos MCP
 
 面向 AI Agent 驱动开发的项目智能追踪工具。追踪哪些功能被提出、哪些已实现、哪些已作废、以及 Agent 下一步计划做什么。
 
@@ -45,7 +45,7 @@ npx @topos/mcp skill
 
 ## 工作原理
 
-Topos 在 `.devion/` 目录维护一个 `project.yaml` 文件，追踪项目的架构（分层 → 模块 → 功能点）、实现状态和 Agent 计划。3D Dashboard 将其可视化为可交互的拓扑图。Agent 启动时读取 `agent-context.md`，工作中通过 MCP 工具更新状态。
+Topos MCP 在 `.devion/` 目录维护一个 `project.yaml` 文件，追踪项目的架构（分层 → 模块 → 功能点）、实现状态和 Agent 计划。3D Dashboard 将其可视化为可交互的拓扑图。Agent 启动时读取 `agent-context.md`，工作中通过 MCP 工具更新状态。
 
 ## Dashboard 操作
 
