@@ -39,12 +39,6 @@ node packages/mcp-server/dist/index.js serve   # 启动 MCP server + Dashboard
 }
 ```
 
-注入 Agent 工作习惯：
-
-```bash
-npx @topos/mcp skill
-```
-
 ## 工作原理
 
 Topos MCP 在 `.devion/` 目录维护一个 `project.yaml` 文件，追踪项目的架构（分层 → 模块 → 功能点）、实现状态和 Agent 计划。3D Dashboard 将其可视化为可交互的拓扑图。Agent 启动时读取 `agent-context.md`，工作中通过 MCP 工具更新状态。
