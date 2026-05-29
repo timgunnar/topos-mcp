@@ -11,3 +11,6 @@ CLAUDE.md
 TODOLIST.md
 skill/
 .playwright-mcp/
+packages/mcp-server/LICENSE
+packages/mcp-server/README.md
+packages/mcp-server/CHANGELOG.md

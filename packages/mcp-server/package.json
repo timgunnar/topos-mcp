@@ -3,12 +3,19 @@
   "version": "0.1.0",
   "type": "module",
   "main": "./dist/index.js",
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
   "bin": {
     "topos": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "prepublishOnly": "node -e \"const{copyFileSync}=require('fs');['LICENSE','README.md','CHANGELOG.md'].forEach(f=>{try{copyFileSync('../../'+f,f)}catch(e){console.error('Missing root file: '+f)}})\""
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
