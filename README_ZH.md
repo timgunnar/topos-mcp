@@ -32,16 +32,15 @@ Topos MCP 的数据模型分为三个层级，结构化地描述项目全貌：
 
 设计原则：零外部依赖（无数据库、无文件监听），Agent 显式调用工具即持久化，人类随时查看 YAML。
 
-## 运行方式
+## 使用方式
 
-Topos MCP 支持两种运行方式，共用同一套 Dashboard 和数据服务：
+启动 MCP Server 和 Dashboard：
 
-| 方式 | 适用场景 | 启动命令 |
-|------|---------|---------|
-| **本地浏览器** | 开发调试、日常使用 | `npx @timgunnar/topos-mcp serve` → `http://localhost:4321` |
-| **VS Code 插件** | IDE 内沉浸式体验 | 命令面板 → `Topos: Open Dashboard` |
+```bash
+npx @timgunnar/topos-mcp serve
+```
 
-两种方式可同时使用 — HTTP 服务支持多客户端并发访问，VS Code Webview 和浏览器标签页可以同时打开同一个 Dashboard。端口冲突自动检测，优雅退出。
+浏览器打开 `http://localhost:4321` 查看 3D 拓扑图。Dashboard 支持多个浏览器标签页同时访问。
 
 ## 安装
 

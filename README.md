@@ -31,16 +31,15 @@ Layer  →  Module  →  Feature
 
 Design principle: zero external dependencies (no database, no file watchers). Agent explicitly calls tools to persist; humans can inspect the YAML at any time.
 
-## Running Modes
+## Usage
 
-Topos MCP supports two modes, sharing the same Dashboard and data service:
+Start the MCP server and Dashboard:
 
-| Mode | Use Case | How to Start |
-|------|----------|-------------|
-| **Browser** | Development, daily use | `npx @timgunnar/topos-mcp serve` → `http://localhost:4321` |
-| **VS Code Extension** | Immersive IDE experience | Command Palette → `Topos: Open Dashboard` |
+```bash
+npx @timgunnar/topos-mcp serve
+```
 
-Both modes can run simultaneously — the HTTP server supports concurrent multi-client access. VS Code Webview and browser tabs can open the same Dashboard at the same time. Port conflicts are detected automatically with a graceful exit.
+Open `http://localhost:4321` to view the 3D topology. The Dashboard supports multiple concurrent browser tabs.
 
 ## Install
 

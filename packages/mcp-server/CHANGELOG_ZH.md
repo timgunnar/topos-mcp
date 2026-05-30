@@ -2,18 +2,24 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
+## v0.2.3
+
+### 关键升级
+
+- npm 包描述切换为英文
+
 ## v0.2.2
 
 ### 关键升级
 
-- 文档结构重组：README/CHANGELOG 默认为英文，中文版改为 `_ZH` 变体
+- 文档：README/CHANGELOG 默认为英文，中文版改为 `_ZH` 变体
 
 ## v0.2.1
 
 ### 关键升级
 
-- 英文文档支持：README.md 为默认英文，README_ZH.md 为中文，顶部双语切换链接
-- npm 发布包新增英文文档 README.md、CHANGELOG.md
+- 英文文档支持，顶部双语切换链接
+- npm 发布包新增英文文档
 - 重命名 `.devion` → `.topos`，消除旧项目遗留命名
 - 修复 ESM 下 `__dirname` 不兼容问题（改用 `import.meta.url`）
 
@@ -21,9 +27,7 @@
 
 ### 关键升级
 
-- VS Code 扩展 (`topos-vscode`)：Webview 内嵌 3D Dashboard，命令面板一键打开
-- `serve-http` 命令：仅启动 HTTP + WebSocket Dashboard，不含 MCP stdio
-- 端口占用检测：HTTP 被占时优雅退出，多进程复用同一 Dashboard 实例
+- 端口占用检测：HTTP 被占时优雅退出
 - Three.js 性能优化：`frameloop="demand"`，idle 时零 GPU 占用
 
 ### 关键 BUG 修复

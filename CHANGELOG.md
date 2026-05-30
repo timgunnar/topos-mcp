@@ -2,18 +2,24 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
+## v0.2.3
+
+### Key Upgrades
+
+- npm package description switched to English
+
 ## v0.2.2
 
 ### Key Upgrades
 
-- Documentation restructured: README/CHANGELOG now English default, Chinese as `_ZH` variant
+- Documentation: README/CHANGELOG now English default, Chinese as `_ZH` variant
 
 ## v0.2.1
 
 ### Key Upgrades
 
-- English documentation: README.md (default), README_ZH.md with bilingual toggle links
-- npm package now includes English docs: README.md, CHANGELOG.md
+- English documentation with bilingual toggle links
+- npm package now includes English docs
 - Renamed `.devion` → `.topos` to remove legacy naming
 - Fixed ESM `__dirname` incompatibility (switched to `import.meta.url`)
 
@@ -21,9 +27,7 @@
 
 ### Key Upgrades
 
-- VS Code extension (`topos-vscode`): Webview embedded 3D Dashboard, one-click open from command palette
-- `serve-http` command: Start HTTP + WebSocket Dashboard only, without MCP stdio
-- Port conflict detection: Graceful exit when HTTP port is occupied; multiple processes can reuse the same Dashboard instance
+- Port conflict detection: Graceful exit when HTTP port is occupied
 - Three.js performance optimization: `frameloop="demand"`, zero GPU usage at idle
 
 ### Key Bug Fixes
