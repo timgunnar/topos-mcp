@@ -118,6 +118,14 @@ export function startServer(cwd: string): void {
     ws.on("close", () => clients.delete(ws));
   });
 
+  server.on("error", (err: NodeJS.ErrnoException) => {
+    if (err.code === "EADDRINUSE") {
+      console.log(`Dashboard already running on http://localhost:${PORT}`);
+      return;
+    }
+    throw err;
+  });
+
   server.listen(PORT, () => {
     console.log(`Topos Dashboard: http://localhost:${PORT}`);
   });
