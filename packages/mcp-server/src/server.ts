@@ -1,10 +1,14 @@
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { WebSocketServer, WebSocket } from "ws";
 import type { ToposData } from "./types.js";
 import { readProject, writeProject, findFeature, addHistoryEntry } from "./data.js";
 import { writeContext } from "./context.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PORT = 4321;
 
