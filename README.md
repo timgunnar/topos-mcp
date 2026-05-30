@@ -1,5 +1,7 @@
 # Topos MCP
 
+[中文](./README.md) | [English](./README_EN.md)
+
 面向 AI Agent 驱动开发的项目智能追踪工具。追踪哪些功能被提出、哪些已实现、哪些已作废、以及 Agent 下一步计划做什么。
 
 ## 项目背景

@@ -1,5 +1,7 @@
 # Changelog
 
+[中文](./CHANGELOG.md) | [English](./CHANGELOG_EN.md)
+
 ## v0.2.0
 
 ### 关键升级
