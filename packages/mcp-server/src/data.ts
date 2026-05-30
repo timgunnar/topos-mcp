@@ -6,11 +6,11 @@ import type { ToposData, Feature, Layer, Module, HistoryEntry } from "./types.js
 const PROJECT_FILE = "project.yaml";
 
 export function resolveProjectPath(cwd: string): string {
-  return path.join(cwd, ".devion", PROJECT_FILE);
+  return path.join(cwd, ".topos", PROJECT_FILE);
 }
 
-export function ensureDevionDir(cwd: string): void {
-  const dir = path.join(cwd, ".devion");
+export function ensureToposDir(cwd: string): void {
+  const dir = path.join(cwd, ".topos");
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
@@ -26,7 +26,7 @@ export function readProject(cwd: string): ToposData {
 }
 
 export function writeProject(cwd: string, data: ToposData): void {
-  ensureDevionDir(cwd);
+  ensureToposDir(cwd);
   const yaml = YAML.stringify(data, { lineWidth: 0 });
   fs.writeFileSync(resolveProjectPath(cwd), yaml, "utf-8");
 }

@@ -8,7 +8,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { CallToolRequestSchema, ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { tools } from "./tools.js";
 import { handleToolCall, setCwd } from "./mcp.js";
-import { ensureDevionDir, readProject, writeProject } from "./data.js";
+import { ensureToposDir, readProject, writeProject } from "./data.js";
 import { writeContext } from "./context.js";
 import { startServer } from "./server.js";
 
@@ -18,7 +18,7 @@ const command = args[0];
 async function runServe(): Promise<void> {
   const cwd = process.cwd();
   setCwd(cwd);
-  ensureDevionDir(cwd);
+  ensureToposDir(cwd);
 
   // Start Dashboard server in background
   startServer(cwd);
@@ -43,11 +43,11 @@ async function runServe(): Promise<void> {
 async function runInit(): Promise<void> {
   const cwd = process.cwd();
   setCwd(cwd);
-  ensureDevionDir(cwd);
+  ensureToposDir(cwd);
   const data = readProject(cwd);
   writeProject(cwd, data);
   writeContext(cwd, data);
-  console.log(`Topos initialized in ${cwd}/.devion/`);
+  console.log(`Topos initialized in ${cwd}/.topos/`);
   console.log("  project.yaml — project data");
   console.log("  agent-context.md — agent-readable summary");
   console.log("");
@@ -93,7 +93,7 @@ async function runSkill(): Promise<void> {
 async function runServeHttp(): Promise<void> {
   const cwd = process.cwd();
   setCwd(cwd);
-  ensureDevionDir(cwd);
+  ensureToposDir(cwd);
   startServer(cwd);
 }
 

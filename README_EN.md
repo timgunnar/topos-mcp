@@ -13,7 +13,7 @@ AI Agent-assisted development is becoming the norm, but long-term projects face 
 - **No single source of truth** — Git tracks code change history, but cannot answer "what features are currently implemented and what's still planned?" Code state ≠ project state.
 - **Humans can't audit Agent work** — When a requirement goes through dozens of conversation rounds from proposal to implementation, it's hard to trace back "who proposed this feature, why was it implemented, and what status changes occurred along the way."
 
-Topos MCP solves this by maintaining a lightweight structured state file (`.devion/project.yaml`) in the project. The Agent updates feature status on every operation, while a human-readable context summary (`agent-context.md`) is auto-generated. The Agent reads the context on startup to quickly recover awareness, continuously updates via MCP tools during work, and humans get a bird's-eye view of the entire project through the 3D Dashboard.
+Topos MCP solves this by maintaining a lightweight structured state file (`.topos/project.yaml`) in the project. The Agent updates feature status on every operation, while a human-readable context summary (`agent-context.md`) is auto-generated. The Agent reads the context on startup to quickly recover awareness, continuously updates via MCP tools during work, and humans get a bird's-eye view of the entire project through the 3D Dashboard.
 
 ![Dashboard Screenshot](https://raw.githubusercontent.com/timgunnar/topos-mcp/master/assets/dashboard.png)
 
@@ -25,7 +25,7 @@ Topos MCP uses a three-level data model that structurally describes the entire p
 Layer  →  Module  →  Feature
 ```
 
-- **project.yaml** — Single source of truth, stored in `.devion/`. Contains project architecture (layers/modules/features), four feature statuses (active/in progress/implemented/deprecated), four source types (feature request/bug fix/refactor/optimization), dependency relationships, and evolution history
+- **project.yaml** — Single source of truth, stored in `.topos/`. Contains project architecture (layers/modules/features), four feature statuses (active/in progress/implemented/deprecated), four source types (feature request/bug fix/refactor/optimization), dependency relationships, and evolution history
 - **agent-context.md** — Auto-generated, read by the Agent on startup. Contains in-progress features, planned items, current plans, and recently deprecated records, helping the Agent quickly regain awareness across sessions
 - **MCP Tools (7)** — Agent interacts via standard MCP protocol: create/update/query features, view plans, record status changes. Each operation automatically writes to YAML and regenerates agent-context.md
 

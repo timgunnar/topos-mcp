@@ -65,7 +65,7 @@ export function generateContext(data: ToposData): string {
 
 export function writeContext(cwd: string, data: ToposData): void {
   const md = generateContext(data);
-  const filePath = path.join(cwd, ".devion", "agent-context.md");
+  const filePath = path.join(cwd, ".topos", "agent-context.md");
   fs.writeFileSync(filePath, md, "utf-8");
 }
 

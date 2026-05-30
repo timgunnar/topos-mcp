@@ -25,7 +25,7 @@
 ### Key Upgrades
 
 - MCP Server (`@timgunnar/topos-mcp`) released with 7 tools for feature CRUD and plan queries
-- Three-level data model (Layer → Module → Feature), YAML persistence (`.devion/project.yaml`)
+- Three-level data model (Layer → Module → Feature), YAML persistence (`.topos/project.yaml`)
 - `agent-context.md` auto-generated for Agent to read project status summary on startup
 - CLI with three commands: `init`, `serve` (MCP + Dashboard), `skill` (inject Agent habits into CLAUDE.md)
 - 3D Topology Dashboard (Three.js + React Three Fiber) with OrbitControls interaction
