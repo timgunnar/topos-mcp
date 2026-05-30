@@ -1,0 +1,39 @@
+{
+  "name": "topos-vscode",
+  "displayName": "Topos MCP",
+  "description": "3D 拓扑仪表盘 — AI Agent 驱动开发的项目智能追踪",
+  "version": "0.2.0",
+  "private": true,
+  "publisher": "timgunnar",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timgunnar/topos-mcp"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "activationEvents": ["onCommand:topos.openDashboard"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "topos.openDashboard",
+        "title": "Open Dashboard",
+        "category": "Topos"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc",
+    "package": "vsce package"
+  },
+  "dependencies": {
+    "@timgunnar/topos-mcp": "0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.6.0"
+  }
+}
