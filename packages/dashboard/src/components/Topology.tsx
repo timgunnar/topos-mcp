@@ -1,5 +1,5 @@
 import { useRef, useMemo } from "react";
-import { Canvas, useFrame, ThreeEvent } from "@react-three/fiber";
+import { Canvas, useFrame, useThree, ThreeEvent } from "@react-three/fiber";
 import { OrbitControls, Text, Line } from "@react-three/drei";
 import * as THREE from "three";
 import type { ToposData, Feature } from "../api";
@@ -35,6 +35,7 @@ function NodeSphere({
   onClick: (e: ThreeEvent<MouseEvent>) => void;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
+  const { invalidate } = useThree();
   const color = statusColor(feature);
   const bugAlert = isBugFix(feature);
   const scale =
@@ -45,6 +46,7 @@ function NodeSphere({
     if (feature.status === "in_progress") {
       const pulse = 1 + Math.sin(clock.elapsedTime * 3) * 0.15;
       meshRef.current.scale.setScalar(pulse);
+      invalidate();
     } else {
       meshRef.current.scale.setScalar(1);
     }
@@ -56,6 +58,7 @@ function NodeSphere({
         new THREE.Color("#ef4444"),
         alert
       );
+      invalidate();
     }
   });
 
@@ -235,7 +238,7 @@ export default function Topology({
   timelineValue: number;
 }) {
   return (
-    <Canvas camera={{ position: [8, 6, 15], fov: 50 }} style={{ background: "#0a0a0f" }}>
+    <Canvas camera={{ position: [8, 6, 15], fov: 50 }} style={{ background: "#0a0a0f" }} frameloop="demand">
       <Scene data={data} selectedId={selectedId} onSelect={onSelect} timelineValue={timelineValue} />
       <OrbitControls enableDamping dampingFactor={0.1} />
     </Canvas>
