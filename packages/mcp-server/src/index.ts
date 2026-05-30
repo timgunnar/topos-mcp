@@ -57,7 +57,7 @@ async function runInit(): Promise<void> {
 
 async function runSkill(): Promise<void> {
   const cwd = process.cwd();
-  const skillPath = path.join(__dirname, "..", "..", "skill", "topos-skill.md");
+  const skillPath = path.join(__dirname, "..", "..", ".claude", "topos-skill.md");
 
   if (!fs.existsSync(skillPath)) {
     console.log("Error: skill file not found at", skillPath);
