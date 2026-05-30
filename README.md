@@ -18,6 +18,31 @@ MCP 工具持续更新，人通过 3D Dashboard 一眼看清项目全貌。
 
 ![Dashboard 截图](https://raw.githubusercontent.com/timgunnar/topos-mcp/master/assets/dashboard.png)
 
+## 数据管理
+
+Topos MCP 的数据模型分为三个层级，结构化地描述项目全貌：
+
+```
+分层 (Layer)  →  模块 (Module)  →  功能点 (Feature)
+```
+
+- **project.yaml** — 唯一事实源，存储在 `.devion/` 目录。包含项目架构（分层/模块/功能点）、每个功能点四种状态（已规划/实现中/已实现/已作废）、四类来源（功能需求/缺陷修复/重构优化/性能优化）、依赖关系和演化历史
+- **agent-context.md** — 自动生成，供 Agent 启动时读取。包含进行中的功能、已规划列表、当前计划和最近作废记录，帮助 Agent 跨会话快速恢复认知
+- **MCP 工具（7 个）** — Agent 通过标准 MCP 协议调用：创建/更新/查询功能点、查看计划、记录状态变更。每次操作自动写入 YAML 并刷新 agent-context.md
+
+设计原则：零外部依赖（无数据库、无文件监听），Agent 显式调用工具即持久化，人类随时查看 YAML。
+
+## 运行方式
+
+Topos MCP 支持两种运行方式，共用同一套 Dashboard 和数据服务：
+
+| 方式 | 适用场景 | 启动命令 |
+|------|---------|---------|
+| **本地浏览器** | 开发调试、日常使用 | `npx @timgunnar/topos-mcp serve` → `http://localhost:4321` |
+| **VS Code 插件** | IDE 内沉浸式体验 | 命令面板 → `Topos: Open Dashboard` |
+
+两种方式可同时使用 — HTTP 服务支持多客户端并发访问，VS Code Webview 和浏览器标签页可以同时打开同一个 Dashboard。端口冲突自动检测，优雅退出。
+
 ## 安装
 
 ### npm（推荐）
