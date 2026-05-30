@@ -1,71 +1,70 @@
 # Topos MCP
 
-[中文](./README.md) | [English](./README_EN.md)
+[English](./README.md) | [中文](./README_ZH.md)
 
-面向 AI Agent 驱动开发的项目智能追踪工具。追踪哪些功能被提出、哪些已实现、哪些已作废、以及 Agent 下一步计划做什么。
+An intelligent project tracking tool for AI Agent-driven development. Track which features have been proposed, which are implemented, which are deprecated, and what the Agent plans to do next.
 
-## 项目背景
+## Project Background
 
-AI Agent 辅助开发正在成为常态，但长周期项目中存在几个核心痛点：
+AI Agent-assisted development is becoming the norm, but long-term projects face several core pain points:
 
-- **需求漂移无人知晓** — Agent 在一次次的对话中不断调整方案，旧的决策被新指令覆盖。哪些功能被提出后又作废了？人不知道，Agent 也不记得。
-- **上下文丢失** — Agent 的上下文窗口有限，长对话中早期提出的需求和设计意图会逐渐丢失。跨会话之后，Agent 很难准确回忆起"我们上次做到哪了"。
-- **缺乏单一事实源** — Git 追踪了代码变更历史，但无法回答"当前项目有哪些功能已实现、哪些还在规划中"。代码状态 ≠ 项目状态。
-- **人无法审计 Agent 的工作** — 当一个需求从提出到实现经历了数十轮对话，人很难回溯"这个功能是谁提出的、为什么被实现、中间经历了哪些状态变化"。
+- **Requirement drift goes unnoticed** — The Agent continuously adjusts its approach across conversations; old decisions are overwritten by new instructions. Which features were proposed and then deprecated? Neither the human nor the Agent remembers.
+- **Context loss** — The Agent's context window is limited. Early requirements and design intent from long conversations gradually fade. Across sessions, the Agent struggles to recall "where we left off."
+- **No single source of truth** — Git tracks code change history, but cannot answer "what features are currently implemented and what's still planned?" Code state ≠ project state.
+- **Humans can't audit Agent work** — When a requirement goes through dozens of conversation rounds from proposal to implementation, it's hard to trace back "who proposed this feature, why was it implemented, and what status changes occurred along the way."
 
-Topos MCP 通过在项目中维护一个轻量的结构化状态文件（`.topos/project.yaml`），让 Agent 在每次操作时更新功能点状态，同时生成人类可读的上下文摘要（`agent-context.md`）。Agent 启动时读取上下文快速恢复认知，工作中通过
-MCP 工具持续更新，人通过 3D Dashboard 一眼看清项目全貌。
+Topos MCP solves this by maintaining a lightweight structured state file (`.topos/project.yaml`) in the project. The Agent updates feature status on every operation, while a human-readable context summary (`agent-context.md`) is auto-generated. The Agent reads the context on startup to quickly recover awareness, continuously updates via MCP tools during work, and humans get a bird's-eye view of the entire project through the 3D Dashboard.
 
-![Dashboard 截图](https://raw.githubusercontent.com/timgunnar/topos-mcp/master/assets/dashboard.png)
+![Dashboard Screenshot](https://raw.githubusercontent.com/timgunnar/topos-mcp/master/assets/dashboard.png)
 
-## 数据管理
+## Data Management
 
-Topos MCP 的数据模型分为三个层级，结构化地描述项目全貌：
+Topos MCP uses a three-level data model that structurally describes the entire project:
 
 ```
-分层 (Layer)  →  模块 (Module)  →  功能点 (Feature)
+Layer  →  Module  →  Feature
 ```
 
-- **project.yaml** — 唯一事实源，存储在 `.topos/` 目录。包含项目架构（分层/模块/功能点）、每个功能点四种状态（已规划/实现中/已实现/已作废）、四类来源（功能需求/缺陷修复/重构优化/性能优化）、依赖关系和演化历史
-- **agent-context.md** — 自动生成，供 Agent 启动时读取。包含进行中的功能、已规划列表、当前计划和最近作废记录，帮助 Agent 跨会话快速恢复认知
-- **MCP 工具（7 个）** — Agent 通过标准 MCP 协议调用：创建/更新/查询功能点、查看计划、记录状态变更。每次操作自动写入 YAML 并刷新 agent-context.md
+- **project.yaml** — Single source of truth, stored in `.topos/`. Contains project architecture (layers/modules/features), four feature statuses (active/in progress/implemented/deprecated), four source types (feature request/bug fix/refactor/optimization), dependency relationships, and evolution history
+- **agent-context.md** — Auto-generated, read by the Agent on startup. Contains in-progress features, planned items, current plans, and recently deprecated records, helping the Agent quickly regain awareness across sessions
+- **MCP Tools (7)** — Agent interacts via standard MCP protocol: create/update/query features, view plans, record status changes. Each operation automatically writes to YAML and regenerates agent-context.md
 
-设计原则：零外部依赖（无数据库、无文件监听），Agent 显式调用工具即持久化，人类随时查看 YAML。
+Design principle: zero external dependencies (no database, no file watchers). Agent explicitly calls tools to persist; humans can inspect the YAML at any time.
 
-## 运行方式
+## Running Modes
 
-Topos MCP 支持两种运行方式，共用同一套 Dashboard 和数据服务：
+Topos MCP supports two modes, sharing the same Dashboard and data service:
 
-| 方式 | 适用场景 | 启动命令 |
-|------|---------|---------|
-| **本地浏览器** | 开发调试、日常使用 | `npx @timgunnar/topos-mcp serve` → `http://localhost:4321` |
-| **VS Code 插件** | IDE 内沉浸式体验 | 命令面板 → `Topos: Open Dashboard` |
+| Mode | Use Case | How to Start |
+|------|----------|-------------|
+| **Browser** | Development, daily use | `npx @timgunnar/topos-mcp serve` → `http://localhost:4321` |
+| **VS Code Extension** | Immersive IDE experience | Command Palette → `Topos: Open Dashboard` |
 
-两种方式可同时使用 — HTTP 服务支持多客户端并发访问，VS Code Webview 和浏览器标签页可以同时打开同一个 Dashboard。端口冲突自动检测，优雅退出。
+Both modes can run simultaneously — the HTTP server supports concurrent multi-client access. VS Code Webview and browser tabs can open the same Dashboard at the same time. Port conflicts are detected automatically with a graceful exit.
 
-## 安装
+## Install
 
-### npm（推荐）
+### npm (Recommended)
 
 ```bash
-npx @timgunnar/topos-mcp init    # 在当前项目初始化
-npx @timgunnar/topos-mcp serve   # 启动 MCP server + Dashboard
+npx @timgunnar/topos-mcp init    # Initialize in current project
+npx @timgunnar/topos-mcp serve   # Start MCP server + Dashboard
 ```
 
-### 从源码安装（GitHub）
+### From Source (GitHub)
 
 ```bash
 git clone https://github.com/timgunnar/topos-mcp.git
 cd topos-mcp
 npm install
 npm run build
-node packages/mcp-server/dist/index.js init    # 在当前项目初始化
-node packages/mcp-server/dist/index.js serve   # 启动 MCP server + Dashboard
+node packages/mcp-server/dist/index.js init    # Initialize in current project
+node packages/mcp-server/dist/index.js serve   # Start MCP server + Dashboard
 ```
 
-打开 `http://localhost:4321` 查看 3D 拓扑图。
+Open `http://localhost:4321` to view the 3D topology.
 
-## Claude Code 配置
+## Claude Code Configuration
 
 ```json
 {
