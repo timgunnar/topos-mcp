@@ -117,6 +117,9 @@ export function startServer(cwd: string): void {
     clients.add(ws);
     ws.on("close", () => clients.delete(ws));
   });
+  wss.on("error", () => {
+    // EADDRINUSE handled on server below; silence WSS error to avoid crash
+  });
 
   server.on("error", (err: NodeJS.ErrnoException) => {
     if (err.code === "EADDRINUSE") {

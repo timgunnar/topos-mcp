@@ -1,5 +1,23 @@
 # Changelog
 
+## v0.2.0
+
+### 关键升级
+
+- VS Code 扩展 (`topos-vscode`)：Webview 内嵌 3D Dashboard，命令面板一键打开
+- `serve-http` 命令：仅启动 HTTP + WebSocket Dashboard，不含 MCP stdio
+- 端口占用检测：HTTP 被占时优雅退出，多进程复用同一 Dashboard 实例
+- Three.js 性能优化：`frameloop="demand"`，idle 时零 GPU 占用
+
+### 关键 BUG 修复
+
+- 修复端口冲突时进程僵死问题（EADDRINUSE 后调用 `process.exit(0)`）
+- 修复日志前缀不一致（统一为 `Dashboard:` 前缀）
+
+### 测试
+
+- 尚未添加自动化测试
+
 ## v0.1.0
 
 ### 关键升级
