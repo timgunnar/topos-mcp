@@ -2,12 +2,18 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
+## v0.2.2
+
+### 关键升级
+
+- 文档结构重组：README/CHANGELOG 默认为英文，中文版改为 `_ZH` 变体
+
 ## v0.2.1
 
 ### 关键升级
 
-- 英文文档支持：README_EN.md、CHANGELOG_EN.md，顶部双语切换链接
-- npm 发布包新增英文文档 README_EN.md、CHANGELOG_EN.md
+- 英文文档支持：README.md 为默认英文，README_ZH.md 为中文，顶部双语切换链接
+- npm 发布包新增英文文档 README.md、CHANGELOG.md
 - 重命名 `.devion` → `.topos`，消除旧项目遗留命名
 - 修复 ESM 下 `__dirname` 不兼容问题（改用 `import.meta.url`）
 

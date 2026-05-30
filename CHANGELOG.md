@@ -2,6 +2,12 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
+## v0.2.2
+
+### Key Upgrades
+
+- Documentation restructured: README/CHANGELOG now English default, Chinese as `_ZH` variant
+
 ## v0.2.1
 
 ### Key Upgrades
