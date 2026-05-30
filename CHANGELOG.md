@@ -2,6 +2,15 @@
 
 [中文](./CHANGELOG.md) | [English](./CHANGELOG_EN.md)
 
+## v0.2.1
+
+### 关键升级
+
+- 英文文档支持：README_EN.md、CHANGELOG_EN.md，顶部双语切换链接
+- npm 发布包新增英文文档 README_EN.md、CHANGELOG_EN.md
+- 重命名 `.devion` → `.topos`，消除旧项目遗留命名
+- 修复 ESM 下 `__dirname` 不兼容问题（改用 `import.meta.url`）
+
 ## v0.2.0
 
 ### 关键升级

@@ -2,6 +2,15 @@
 
 [中文](./CHANGELOG.md) | [English](./CHANGELOG_EN.md)
 
+## v0.2.1
+
+### Key Upgrades
+
+- English documentation: README_EN.md, CHANGELOG_EN.md with bilingual toggle links
+- npm package now includes English docs: README_EN.md, CHANGELOG_EN.md
+- Renamed `.devion` → `.topos` to remove legacy naming
+- Fixed ESM `__dirname` incompatibility (switched to `import.meta.url`)
+
 ## v0.2.0
 
 ### Key Upgrades

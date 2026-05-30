@@ -1,6 +1,6 @@
 {
   "name": "@timgunnar/topos-mcp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "AI Agent 驱动开发的项目智能追踪 MCP 工具 — 3D 拓扑 Dashboard 可视化项目状态",
   "license": "MIT",
   "repository": {
