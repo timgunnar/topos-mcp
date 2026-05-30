@@ -120,13 +120,13 @@ export function startServer(cwd: string): void {
 
   server.on("error", (err: NodeJS.ErrnoException) => {
     if (err.code === "EADDRINUSE") {
-      console.log(`Dashboard already running on http://localhost:${PORT}`);
-      return;
+      console.log(`Port ${PORT} is already in use — dashboard not started. Is another Topos instance running?`);
+      process.exit(0);
     }
     throw err;
   });
 
   server.listen(PORT, () => {
-    console.log(`Topos Dashboard: http://localhost:${PORT}`);
+    console.log(`Dashboard: http://localhost:${PORT}`);
   });
 }
