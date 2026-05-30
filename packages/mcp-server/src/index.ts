@@ -90,6 +90,13 @@ async function runSkill(): Promise<void> {
   }
 }
 
+async function runServeHttp(): Promise<void> {
+  const cwd = process.cwd();
+  setCwd(cwd);
+  ensureDevionDir(cwd);
+  startServer(cwd);
+}
+
 async function main(): Promise<void> {
   switch (command) {
     case "init":
@@ -101,13 +108,17 @@ async function main(): Promise<void> {
     case "skill":
       await runSkill();
       break;
+    case "serve-http":
+      await runServeHttp();
+      break;
     default:
       console.log("topos — project intelligence for AI-agent-driven development");
       console.log("");
       console.log("Usage: topos <command>");
       console.log("  init    Initialize Topos in the current project");
       console.log("  serve   Start MCP server + Dashboard");
-      console.log("  skill   Inject Topos agent habits into CLAUDE.md");
+      console.log("  skill      Inject Topos agent habits into CLAUDE.md");
+      console.log("  serve-http  Start Dashboard server (HTTP + WebSocket only, no MCP)");
   }
 }
 
