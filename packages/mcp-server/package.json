@@ -13,7 +13,9 @@
     "dist/",
     "LICENSE",
     "README.md",
-    "CHANGELOG.md"
+    "README_EN.md",
+    "CHANGELOG.md",
+    "CHANGELOG_EN.md"
   ],
   "bin": {
     "topos": "dist/index.js"
@@ -21,7 +23,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "prepublishOnly": "node -e \"const{copyFileSync}=require('fs');['LICENSE','README.md','CHANGELOG.md'].forEach(f=>{try{copyFileSync('../../'+f,f)}catch(e){console.error('Missing root file: '+f)}})\""
+    "prepublishOnly": "node -e \"const{copyFileSync}=require('fs');['LICENSE','README.md','README_EN.md','CHANGELOG.md','CHANGELOG_EN.md'].forEach(f=>{try{copyFileSync('../../'+f,f)}catch(e){console.error('Missing root file: '+f)}})\""
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
