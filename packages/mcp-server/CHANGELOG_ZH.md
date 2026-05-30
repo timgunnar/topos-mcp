@@ -2,33 +2,16 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
-## v0.2.3
-
-### 关键升级
-
-- npm 包描述切换为英文
-
-## v0.2.2
-
-### 关键升级
-
-- 文档：README/CHANGELOG 默认为英文，中文版改为 `_ZH` 变体
-
-## v0.2.1
-
-### 关键升级
-
-- 英文文档支持，顶部双语切换链接
-- npm 发布包新增英文文档
-- 重命名 `.devion` → `.topos`，消除旧项目遗留命名
-- 修复 ESM 下 `__dirname` 不兼容问题（改用 `import.meta.url`）
-
-## v0.2.0
+## v0.2.4
 
 ### 关键升级
 
 - 端口占用检测：HTTP 被占时优雅退出
 - Three.js 性能优化：`frameloop="demand"`，idle 时零 GPU 占用
+- 重命名 `.devion` → `.topos`，消除旧项目遗留命名
+- 修复 ESM 下 `__dirname` 不兼容问题（改用 `import.meta.url`）
+- 文档：README/CHANGELOG 默认为英文，中文版改为 `_ZH` 变体，顶部双语切换链接
+- npm 包描述切换为英文
 
 ### 关键 BUG 修复
 

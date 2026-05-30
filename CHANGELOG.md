@@ -2,33 +2,16 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
-## v0.2.3
-
-### Key Upgrades
-
-- npm package description switched to English
-
-## v0.2.2
-
-### Key Upgrades
-
-- Documentation: README/CHANGELOG now English default, Chinese as `_ZH` variant
-
-## v0.2.1
-
-### Key Upgrades
-
-- English documentation with bilingual toggle links
-- npm package now includes English docs
-- Renamed `.devion` → `.topos` to remove legacy naming
-- Fixed ESM `__dirname` incompatibility (switched to `import.meta.url`)
-
-## v0.2.0
+## v0.2.4
 
 ### Key Upgrades
 
 - Port conflict detection: Graceful exit when HTTP port is occupied
 - Three.js performance optimization: `frameloop="demand"`, zero GPU usage at idle
+- Renamed `.devion` → `.topos` to remove legacy naming
+- Fixed ESM `__dirname` incompatibility (switched to `import.meta.url`)
+- Documentation: README/CHANGELOG now English default, Chinese as `_ZH` variant with bilingual toggle links
+- npm package description switched to English
 
 ### Key Bug Fixes
 
