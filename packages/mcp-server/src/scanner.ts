@@ -77,7 +77,7 @@ export function scanDirectory(cwd: string): ScanResult {
 export function scanGit(cwd: string): ScanResult {
   const layers: Layer[] = [];
   try {
-    const log = execSync("git log --all --oneline -n 100 2>/dev/null", {
+    const log = execSync("git log --all --oneline -n 100", {
       cwd, encoding: "utf-8", stdio: ["pipe", "pipe", "pipe"],
     });
     const lines = log.trim().split("\n").filter(Boolean);
