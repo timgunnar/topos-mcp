@@ -2,6 +2,13 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
+## v0.2.5
+
+### 关键升级
+
+- `init --smart`：自动从目录、Git 历史、CHANGELOG、package.json 推断项目结构
+- 新增 `pre_existing` 来源类型（自动推断的功能点）
+
 ## v0.2.4
 
 ### 关键升级

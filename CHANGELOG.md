@@ -2,6 +2,13 @@
 
 [English](./CHANGELOG.md) | [中文](./CHANGELOG_ZH.md)
 
+## v0.2.5
+
+### Key Upgrades
+
+- `init --smart`: Auto-detect project structure from directory, Git history, CHANGELOG, and package.json
+- New `pre_existing` source type for auto-inferred features
+
 ## v0.2.4
 
 ### Key Upgrades

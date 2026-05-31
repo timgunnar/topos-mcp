@@ -1,6 +1,6 @@
 {
   "name": "@timgunnar/topos-mcp",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Project intelligence tracker for AI Agent-driven development — 3D topology Dashboard for visualizing project status",
   "license": "MIT",
   "repository": {
