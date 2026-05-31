@@ -9,6 +9,25 @@ export interface ScanResult {
   source: string;
 }
 
+/** Check dir (and one level of subdirs) for source code files. */
+function hasCodeFiles(dirPath: string): boolean {
+  try {
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    // Check top-level files
+    if (entries.some(e => e.isFile() && /\.(ts|js|py|rs|go|java|rb)$/.test(e.name))) return true;
+    // Check one level deeper (src/, lib/, etc.)
+    for (const entry of entries) {
+      if (entry.isDirectory() && !entry.name.startsWith(".") && entry.name !== "node_modules" && entry.name !== "dist" && entry.name !== ".git") {
+        try {
+          const subEntries = fs.readdirSync(path.join(dirPath, entry.name), { withFileTypes: true });
+          if (subEntries.some(e => e.isFile() && /\.(ts|js|py|rs|go|java|rb)$/.test(e.name))) return true;
+        } catch { /* skip unreadable dirs */ }
+      }
+    }
+  } catch { return false; }
+  return false;
+}
+
 // DirScanner: scan packages/, src/, lib/, apps/ directories
 export function scanDirectory(cwd: string): ScanResult {
   const layers: Layer[] = [];
@@ -27,8 +46,7 @@ export function scanDirectory(cwd: string): ScanResult {
       const features: Feature[] = [];
       const modPath = path.join(dirPath, entry.name);
       try {
-        const files = fs.readdirSync(modPath);
-        const hasCode = files.some(f => /\.(ts|js|py|rs|go|java|rb)$/.test(f));
+        const hasCode = hasCodeFiles(modPath);
         if (hasCode) {
           features.push({
             id: "",
