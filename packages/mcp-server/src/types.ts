@@ -1,6 +1,6 @@
 export type FeatureStatus = "active" | "in_progress" | "implemented" | "deprecated";
 
-export type SourceType = "feature_request" | "bug_fix" | "refactor" | "optimization";
+export type SourceType = "feature_request" | "bug_fix" | "refactor" | "optimization" | "pre_existing";
 
 export interface HistoryEntry {
   at: string;
