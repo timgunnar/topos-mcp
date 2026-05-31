@@ -12,6 +12,7 @@ import { handleToolCall, setCwd } from "./mcp.js";
 import { ensureToposDir, readProject, writeProject } from "./data.js";
 import { writeContext } from "./context.js";
 import { startServer } from "./server.js";
+import { scanDirectory, scanGit, scanChangelog, scanPackageJson, mergeScanResults } from "./scanner.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,15 +49,52 @@ async function runInit(): Promise<void> {
   const cwd = process.cwd();
   setCwd(cwd);
   ensureToposDir(cwd);
-  const data = readProject(cwd);
-  writeProject(cwd, data);
-  writeContext(cwd, data);
-  console.log(`Topos initialized in ${cwd}/.topos/`);
-  console.log("  project.yaml — project data");
-  console.log("  agent-context.md — agent-readable summary");
-  console.log("");
-  console.log('Add to Claude Code config:');
-  console.log('  { "mcpServers": { "topos": { "command": "npx", "args": ["@timgunnar/topos-mcp", "serve"] } } }');
+
+  const smart = args.includes("--smart");
+
+  if (smart) {
+    const results = [
+      scanDirectory(cwd),
+      scanGit(cwd),
+      scanChangelog(cwd),
+      scanPackageJson(cwd),
+    ];
+
+    for (const r of results) {
+      if (r.layers.length > 0) {
+        console.log(`  ${r.source.padEnd(14)} → ${r.layers.length} layers, ${r.confidence} confidence`);
+      }
+    }
+
+    const data = mergeScanResults(results);
+    const totalFeatures = data.project.layers.reduce(
+      (sum, l) => sum + l.modules.reduce((s, m) => s + m.features.length, 0),
+      0
+    );
+
+    if (totalFeatures === 0) {
+      console.log("No project structure detected. Creating empty project. Use Dashboard to add features manually.");
+      const empty = readProject(cwd);
+      writeProject(cwd, empty);
+      writeContext(cwd, empty);
+    } else {
+      writeProject(cwd, data);
+      writeContext(cwd, data);
+      console.log(`\n${data.project.layers.length} layers, ${totalFeatures} features written to .topos/project.yaml`);
+    }
+  } else {
+    const data = readProject(cwd);
+    writeProject(cwd, data);
+    writeContext(cwd, data);
+    console.log(`Topos initialized in ${cwd}/.topos/`);
+    console.log("  project.yaml — project data");
+    console.log("  agent-context.md — agent-readable summary");
+    console.log("");
+    console.log("Tip: use `topos init --smart` to auto-detect project structure from Git, directory, CHANGELOG, and package.json");
+    console.log("");
+    console.log('Add to Claude Code config:');
+    console.log('  { "mcpServers": { "topos": { "command": "npx", "args": ["@timgunnar/topos-mcp", "serve"] } } }');
+  }
 }
 
 async function runSkill(): Promise<void> {
